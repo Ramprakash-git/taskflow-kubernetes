@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: taskflow-app-config
+  namespace: taskflow
+data:
+  DB_NAME: taskflow
+  DB_SECRET_ARN: "arn:aws:secretsmanager:ap-south-1:324081753434:secret:rds!db-f26c333e-d041-4610-8291-ba1e5c95274a-JdWLok"
+  AWS_DEFAULT_REGION: ap-south-1

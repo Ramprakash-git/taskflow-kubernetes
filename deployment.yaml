@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskflow-backend
+  namespace: taskflow
+  labels:
+    app: taskflow-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskflow-backend
+  template:
+    metadata:
+      labels:
+        app: taskflow-backend
+    spec:
+      serviceAccountName: taskflow-backend
+      containers:
+        - name: taskflow-backend
+          image: <image>
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+          env:
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: taskflow-app-config
+                  key: DB_NAME
+            - name: DB_SECRET_ARN
+              valueFrom:  
+                configMapKeyRef:
+                  name: taskflow-app-config
+                  key: DB_SECRET_ARN
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: taskflow-app-config
+                  key: AWS_DEFAULT_REGION
+          startupProbe:
+            httpGet: 
+              path: /health
+              port: 8000
+            periodSeconds: 5
+            failureThreshold: 8
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8000
+            periodSeconds: 5
+            failureThreshold: 3
