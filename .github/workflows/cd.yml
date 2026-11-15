@@ -1,0 +1,25 @@
+name: k8s CD
+on:
+  push:
+    branches:
+      - master
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN_K8S }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: Update Kubectl context
+        run: |
+          aws eks update-kubeconfig --name ${{ vars.EKS_CLUSTER_NAME }} --region ${{ vars.AWS_REGION }}
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f configmap.yaml -f service.yaml -f serviceaccount.yaml -f ingress.yaml 
