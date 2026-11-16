@@ -22,4 +22,4 @@ jobs:
           aws eks update-kubeconfig --name ${{ vars.EKS_CLUSTER_NAME }} --region ${{ vars.AWS_REGION }}
       - name: Deploy to EKS
         run: |
-          kubectl apply -f configmap.yaml -f service.yaml -f serviceaccount.yaml -f ingress.yaml 
+          kubectl apply -f configmap.yaml -f service.yaml -f serviceaccount.yaml -f ingress.yaml
