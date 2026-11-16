@@ -5,5 +5,7 @@ metadata:
   namespace: taskflow
 data:
   DB_NAME: taskflow
-  DB_SECRET_ARN: "arn:aws:secretsmanager:ap-south-1:324081753434:secret:rds!db-f26c333e-d041-4610-8291-ba1e5c95274a-JdWLok"
+  DB_SECRET_ARN: arn:aws:secretsmanager:ap-south-1:324081753434:secret:rds!db-f26c333e-d041-4610-8291-ba1e5c95274a-JdWLok
   AWS_DEFAULT_REGION: ap-south-1
+  DB_HOST: taskflow-postgres-db-instance.cpa0qyswidpt.ap-south-1.rds.amazonaws.com
+  DB_PORT: "5432"
