@@ -45,6 +45,16 @@ spec:
                 configMapKeyRef:
                   name: taskflow-app-config
                   key: AWS_DEFAULT_REGION
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: taskflow-app-config
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: taskflow-app-config
+                  key: DB_PORT
           startupProbe:
             httpGet: 
               path: /health
