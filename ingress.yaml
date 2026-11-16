@@ -13,10 +13,10 @@ metadata:
     alb.ingress.kubernetes.io/healthy-threshold-count: '2'
     alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
     alb.ingress.kubernetes.io/security-groups: "sg-00727ab8ec3544a9e"
-  spec:
-    ingressClassName: alb
-    rules:
-        http:
+spec:
+  ingressClassName: alb
+  rules:
+      - http:
           paths:
             - path: /api
               pathType: Prefix
