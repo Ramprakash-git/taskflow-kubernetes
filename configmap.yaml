@@ -9,3 +9,6 @@ data:
   AWS_DEFAULT_REGION: ap-south-1
   DB_HOST: taskflow-postgres-db-instance.cpa0qyswidpt.ap-south-1.rds.amazonaws.com
   DB_PORT: "5432"
+  COGNITO_REGION: ap-south-1
+  COGNITO_USER_POOL_ID: ap-south-1_yxNnzZlnJ
+  COGNITO_APP_CLIENT_ID: 6lq1j9heb801muqk3ink8sijm9
