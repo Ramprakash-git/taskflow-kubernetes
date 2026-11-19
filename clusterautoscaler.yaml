@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: cluster-autoscaler
+  namespace: kube-system
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: cluster-autoscaler
+
+  template:
+    metadata:
+      labels:
+        app: cluster-autoscaler
+
+    spec:
+      serviceAccountName: cluster-autoscaler
+
+      containers:
+        - name: cluster-autoscaler
+
+          image: registry.k8s.io/autoscaling/cluster-autoscaler:v1.35.0
+
+          command:
+            - ./cluster-autoscaler
+
+          args:
+            - --cloud-provider=aws
+            - --cluster-name=eks-cluster-main
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/eks-cluster-main
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 300Mi
+
+            limits:
+              cpu: 200m
+              memory: 500Mi
+
+          imagePullPolicy: IfNotPresent

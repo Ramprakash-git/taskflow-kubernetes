@@ -1,10 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: taskflow-backend
   namespace: taskflow
   labels:
     app: taskflow-backend
+
 spec:
   replicas: 1
   selector:
@@ -14,6 +16,7 @@ spec:
     metadata:
       labels:
         app: taskflow-backend
+        
     spec:
       serviceAccountName: taskflow-backend
       containers:
@@ -22,6 +25,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
+
           resources:
             requests:
               memory: "512Mi"
@@ -29,6 +33,7 @@ spec:
             limits:
               memory: "1Gi"
               cpu: "1"
+              
           env:
             - name: DB_NAME
               valueFrom:
@@ -70,12 +75,14 @@ spec:
                 configMapKeyRef:
                   name: taskflow-app-config
                   key: COGNITO_REGION
+
           startupProbe:
             httpGet: 
               path: /health
               port: 8000
             periodSeconds: 5
             failureThreshold: 8
+
           livenessProbe:
             httpGet:
               path: /health
@@ -83,6 +90,7 @@ spec:
             initialDelaySeconds: 30
             periodSeconds: 10
             failureThreshold: 3
+
           readinessProbe:
             httpGet:
               path: /ready

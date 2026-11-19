@@ -1,4 +1,5 @@
 name: k8s CD
+
 concurrency:
   group: taskflow-eks-deployment
   cancel-in-progress: false
@@ -7,15 +8,19 @@ on:
   push:
     branches:
       - master
+
 permissions:
   contents: read
   id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
+        with:
+          path: k8s
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6.3.0
         with:
@@ -26,4 +31,4 @@ jobs:
           aws eks update-kubeconfig --name ${{ vars.EKS_CLUSTER_NAME }} --region ${{ vars.AWS_REGION }}
       - name: Deploy to EKS
         run: |
-          kubectl apply -f configmap.yaml -f service.yaml -f serviceaccount.yaml -f ingress.yaml
+          find ./k8s -type f -name '*.yaml' ! -name 'deployment.yaml' -exec kubectl apply -f {} \;
