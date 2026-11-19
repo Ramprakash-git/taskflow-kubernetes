@@ -1,4 +1,8 @@
 name: k8s CD
+concurrency:
+  group: taskflow-eks-deployment
+  cancel-in-progress: false
+  
 on:
   push:
     branches:
@@ -22,4 +26,7 @@ jobs:
           aws eks update-kubeconfig --name ${{ vars.EKS_CLUSTER_NAME }} --region ${{ vars.AWS_REGION }}
       - name: Deploy to EKS
         run: |
-          kubectl apply -f configmap.yaml -f service.yaml -f serviceaccount.yaml -f ingress.yaml
+          kubectl apply -f configmap.yaml -f service.yaml -f serviceaccount.yaml -f ingress.yaml -f deployment.yaml
+      - name: Verify Deployment
+        run: |
+          kubectl rollout status deployment/taskflow-backend -n taskflow --timeout=180s
