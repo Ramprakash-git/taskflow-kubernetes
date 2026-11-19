@@ -57,17 +57,17 @@ spec:
                   key: DB_PORT
             - name: COGNITO_USER_POOL_ID
               valueFrom:
-                ConfigMapKeyRef:
+                configMapKeyRef:
                   name: taskflow-app-config
                   key: COGNITO_USER_POOL_ID
             - name: COGNITO_APP_CLIENT_ID
               valueFrom:
-                ConfigMapKeyRef:
+                configMapKeyRef:
                   name: taskflow-app-config
                   key: COGNITO_APP_CLIENT_ID
             - name: COGNITO_REGION
               valueFrom:
-                ConfigMapKeyRef:
+                configMapKeyRef:
                   name: taskflow-app-config
                   key: COGNITO_REGION
           startupProbe:
