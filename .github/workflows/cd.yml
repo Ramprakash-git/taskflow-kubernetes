@@ -31,4 +31,4 @@ jobs:
           aws eks update-kubeconfig --name ${{ vars.EKS_CLUSTER_NAME }} --region ${{ vars.AWS_REGION }}
       - name: Deploy to EKS
         run: |
-          find ./k8s -type f -name '*.yaml' ! -name 'deployment.yaml' -exec kubectl apply -f {} \;
+          find ./k8s -type f -name '*.yaml' ! -name 'deployment.yaml' ! -name '*rbac*.yaml' -exec kubectl apply -f {} \;

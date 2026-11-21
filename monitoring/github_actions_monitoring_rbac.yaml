@@ -9,15 +9,7 @@ rules:
     verbs: ["get", "list", "watch", "create", "update", "patch"]
 
   - apiGroups: [""]
-    resources: ["configmaps"]
-    verbs: ["get", "list", "watch", "create", "update", "patch"]
-
-  - apiGroups: [""]
-    resources: ["services"]
-    verbs: ["get", "list", "watch", "create", "update", "patch"]
-
-  - apiGroups: [""]
-    resources: ["persistentvolumeclaims"]
+    resources: ["configmaps", "services", "persistentvolumeclaims", "serviceaccounts"]
     verbs: ["get", "list", "watch", "create", "update", "patch"]
 
   - apiGroups: [""]
