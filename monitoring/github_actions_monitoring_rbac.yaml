@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 rules:
   - apiGroups: ["apps"]
-    resources: ["statefulsets"]
+    resources: ["statefulsets","daemonsets"]
     verbs: ["get", "list", "watch", "create", "update", "patch"]
 
   - apiGroups: [""]

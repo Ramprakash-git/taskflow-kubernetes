@@ -28,7 +28,8 @@ spec:
           image: <image>
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8000
+            - name: metrics
+              containerPort: 8000
 
           resources:
             requests:
