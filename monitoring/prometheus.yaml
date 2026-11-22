@@ -11,10 +11,16 @@ spec:
   selector:
     matchLabels:
       app: prometheus
+
   template:
     metadata:
       labels:
         app: prometheus
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port:   "9090"
+        prometheus.io/path:   "/metrics"
+
     spec:
       containers:
         - name: prometheus
@@ -25,7 +31,8 @@ spec:
             - "--storage.tsdb.retention.time=7d"
             - "--storage.tsdb.retention.size=8GB"
           ports:
-            - containerPort: 9090
+            - name: metrics
+              containerPort: 9090
 
           volumeMounts:
             - name: prometheus-storage
