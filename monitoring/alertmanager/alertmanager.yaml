@@ -44,6 +44,9 @@ spec:
         - name: alertmanager-data
           persistentVolumeClaim:
             claimName: alertmanager-pvc
+
+      securityContext:
+        fsGroup: 65534
           
 
 

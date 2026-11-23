@@ -90,7 +90,7 @@ spec:
             claimName: prometheus-pvc
 
       securityContext:
-            fsGroup: 65534
+        fsGroup: 65534
             
       serviceAccountName: prometheus
 
