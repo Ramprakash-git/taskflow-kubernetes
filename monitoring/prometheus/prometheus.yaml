@@ -42,6 +42,10 @@ spec:
               mountPath: /etc/prometheus
               readOnly: true
 
+            - name: alert-config
+              mountPath: /etc/prometheus/alerts
+              readOnly: true
+
           startupProbe:
             httpGet:
               path: /-/healthy
@@ -75,6 +79,10 @@ spec:
         - name: prometheus-config
           configMap:
             name: prometheus-config
+
+        - name: alert-config
+          configMap:
+            name: alert-config
 
         - name: prometheus-storage
           persistentVolumeClaim:

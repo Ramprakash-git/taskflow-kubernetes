@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 rules:
   - apiGroups: [""]
-    resources: ["pods","nodes","namespaces","services","persistentvolumeclaims","persistentvolumes","resourcequotas","secrets","limitranges"]
+    resources: ["pods","nodes","namespaces","services","persistentvolumeclaims","persistentvolumes"]
     verbs: ["get","list","watch"]
 
   - apiGroups: ["apps"]
@@ -24,33 +24,10 @@ rules:
     resources: ["storageclasses"]
     verbs: ["get","list","watch"]
 
-  - apiGroups: ["networking.k8s.io"]
-    resources: ["networkpolicies"]
-    verbs: ["get", "list", "watch"]
-
-  - apiGroups: ["storage.k8s.io"]
-    resources: ["volumeattachments"]
-    verbs: ["get", "list", "watch"]
-
-  - apiGroups: ["policy"]
-    resources: ["poddisruptionbudgets"]
-    verbs: ["get", "list", "watch"]
-
-  - apiGroups: ["coordination.k8s.io"]
-    resources: ["leases"]
-    verbs: ["get", "list", "watch"]
-
   - apiGroups: ["discovery.k8s.io"]
     resources: ["endpointslices"]
     verbs: ["get", "list", "watch"]
 
-  - apiGroups: ["admissionregistration.k8s.io"]
-    resources: ["mutatingwebhookconfigurations"]
-    verbs: ["get", "list", "watch"]
-
-  - apiGroups: ["certificates.k8s.io"]
-    resources: ["certificatesigningrequests"]
-    verbs: ["get", "list", "watch"]
 
 ---
 

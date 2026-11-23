@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata: 
+  name: alert-config
+  namespace: monitoring
+
+data:
+  alert-rules.yml: |
+    groups:
+      - name: taskflow-alerts
+        rules:
+          - alert: TaskflowBackendUnavailable
+            expr: |
+              kube_deployment_spec_replicas{deployment="taskflow-backend",namespace="taskflow"}
+              >
+              kube_deployment_status_replicas_available{deployment="taskflow-backend",namespace="taskflow"}
+            for: 2m
+            labels:
+              severity: critical
+            annotations:
+              summary: TaskFlow backend has unavailable replicas
+              description: The TaskFlow backend has fewer available replicas than desired
