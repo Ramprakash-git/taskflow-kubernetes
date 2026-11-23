@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: alertmanager
+  namespace: monitoring
+
+spec:
+  serviceName: alertmanager
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alertmanager
+
+  template:
+    metadata:
+      labels:
+        app: alertmanager
+
+    spec:
+      containers:
+        - name: alertmanager
+          image: prom/alertmanager:v0.31.1
+          args:
+            - "--config.file=/etc/alertmanager/config.yml"
+          ports:
+            - name: web
+              containerPort: 9093
+              protocol: TCP
+
+          volumeMounts:
+            - name: config
+              mountPath: /etc/alertmanager
+              readOnly: true
+
+            - name: alertmanager-data
+              mountPath: /alertmanager
+            
+      volumes:
+        - name: config
+          configMap:
+            name: alertmanager-config
+
+        - name: alertmanager-data
+          persistentVolumeClaim:
+            claimName: alertmanager-pvc
+          
+
+
+
+

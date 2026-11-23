@@ -30,6 +30,7 @@ spec:
             - "--storage.tsdb.path=/prometheus"
             - "--storage.tsdb.retention.time=7d"
             - "--storage.tsdb.retention.size=8GB"
+            - "--web.enable-lifecycle"
           ports:
             - name: metrics
               containerPort: 9090
