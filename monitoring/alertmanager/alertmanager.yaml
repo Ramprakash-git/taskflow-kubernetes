@@ -23,7 +23,6 @@ spec:
           image: prom/alertmanager:v0.31.1
           args:
             - "--config.file=/etc/alertmanager/config.yml"
-            - "--config.expand-env"
             - "--storage.path=/alertmanager"
             
           ports:
@@ -39,7 +38,7 @@ spec:
             - name: alertmanager-data
               mountPath: /alertmanager
 
-            - name: alertmanager-smtp
+            - name: alertmanager-secret
               mountPath: /etc/alertmanager-secret
               readOnly: true
      
