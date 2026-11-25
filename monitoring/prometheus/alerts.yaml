@@ -1,3 +1,4 @@
+# Alert configuration that fires when there is insufficent or no desired replicas
 apiVersion: v1
 kind: ConfigMap
 

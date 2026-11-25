@@ -1,3 +1,4 @@
+# Application deployment with image placeholder which will updated by CD
 apiVersion: apps/v1
 kind: Deployment
 

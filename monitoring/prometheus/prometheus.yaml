@@ -1,3 +1,4 @@
+# Prometheus statefulset with persistent volume and arguments to load config files
 apiVersion: apps/v1
 kind: StatefulSet
 

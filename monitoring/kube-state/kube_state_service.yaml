@@ -1,3 +1,4 @@
+# Cluster IP service for kube-state-metrics
 apiVersion: v1
 kind: Service
 metadata:

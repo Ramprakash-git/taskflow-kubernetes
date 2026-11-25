@@ -1,3 +1,4 @@
+# Grafana Configuration with source as prometheus service
 apiVersion: v1
 kind: ConfigMap
 

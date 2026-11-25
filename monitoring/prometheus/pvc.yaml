@@ -1,3 +1,4 @@
+# Volume claim for prometheus
 apiVersion: v1
 kind: PersistentVolumeClaim
 

@@ -1,3 +1,4 @@
+# Kube-state-metrics deployment with resource configuration and prometheus annotations
 apiVersion: apps/v1
 kind: Deployment
 

@@ -1,3 +1,4 @@
+# Cluster-autoscaler deployment 
 apiVersion: apps/v1
 kind: Deployment
 

@@ -1,3 +1,4 @@
+# Alertmanager configuration with email notification
 apiVersion: v1
 kind: ConfigMap
 

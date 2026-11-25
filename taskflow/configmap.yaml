@@ -1,3 +1,4 @@
+# Configmap containing required env variables for application
 apiVersion: v1
 kind: ConfigMap
 metadata:

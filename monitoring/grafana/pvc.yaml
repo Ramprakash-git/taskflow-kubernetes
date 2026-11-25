@@ -1,3 +1,4 @@
+# Volume claim for grafana
 apiVersion: v1
 kind: PersistentVolumeClaim
 

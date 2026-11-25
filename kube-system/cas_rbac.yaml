@@ -1,3 +1,4 @@
+# Cluster autoscaler RBAC with cluster role and a namespace scoped role
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:

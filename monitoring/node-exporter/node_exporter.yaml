@@ -1,3 +1,4 @@
+# Node exporter daemonset to collect metrics from nodes with proper least previleges and prometheus annotations
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:

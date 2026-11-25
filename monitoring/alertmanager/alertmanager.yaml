@@ -1,3 +1,4 @@
+# Alertmanager statefulset with persistent volume and volume mounts 
 apiVersion: apps/v1
 kind: StatefulSet
 
